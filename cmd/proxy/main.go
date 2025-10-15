@@ -138,7 +138,7 @@ func loop(l log.Logger, ctx context.Context) error {
 
 }
 
-func handleClient(l log.Logger, ctx context.Context, session quic.Connection, backend string) {
+func handleClient(l log.Logger, ctx context.Context, session *quic.Conn, backend string) {
 	l.Log("msg", "session accepted")
 
 	var (
@@ -181,7 +181,7 @@ func handleClient(l log.Logger, ctx context.Context, session quic.Connection, ba
 	wg.Wait()
 }
 
-func handleStream(stream quic.Stream, backend string) error {
+func handleStream(stream *quic.Stream, backend string) error {
 	defer stream.Close()
 
 	wireLength := make([]byte, 2)

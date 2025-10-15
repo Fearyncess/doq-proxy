@@ -154,7 +154,7 @@ func main2() int {
 	return 0
 }
 
-func SendQuery(session quic.Connection, query *Query, dnssec, recursion bool, print chan (string)) error {
+func SendQuery(session *quic.Conn, query *Query, dnssec, recursion bool, print chan (string)) error {
 	stream, err := session.OpenStream()
 	if err != nil {
 		return fmt.Errorf("open stream: %w", err)
